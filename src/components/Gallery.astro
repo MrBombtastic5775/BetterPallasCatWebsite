@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets'
+import { Image, getImage } from 'astro:assets'
 import type { ImageMetadata } from 'astro:assets'
 
 interface ImageItem {
@@ -34,28 +34,39 @@ const gallerySizes =
   {
     images.map((img, i) => (
       <figure class="reveal img-zoom mb-4 break-inside-avoid overflow-hidden rounded-[var(--radius-card)] border border-line bg-stone">
-        <button
-          type="button"
-          class="gallery-trigger block w-full text-left"
-          data-src={img.src.src}
-          data-alt={img.alt}
-          data-caption={img.caption ?? img.alt}
-        >
-          <Image
-            src={img.src}
-            alt={img.alt}
-            layout="constrained"
-            width={750}
-            quality={65}
-            sizes={gallerySizes}
-            loading={i < eager ? "eager" : "lazy"}
-            decoding="async"
-            class="w-full object-cover"
-          />
-        </button>
-        {img.caption && (
-          <figcaption class="px-3.5 py-2.5 text-xs leading-relaxed text-muted">{img.caption}</figcaption>
-        )}
+        {(() => {
+          const optimized = getImage({
+            src: img.src,
+            width: 750,
+            quality: 65,
+            sizes: gallerySizes,
+          })
+          return (
+            <>
+              <button
+                type="button"
+                class="gallery-trigger block w-full text-left"
+                data-src={optimized.src}
+                data-alt={img.alt}
+                data-caption={img.caption ?? img.alt}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={750}
+                  quality={65}
+                  sizes={gallerySizes}
+                  loading={i < eager ? "eager" : "lazy"}
+                  decoding="async"
+                  class="w-full object-cover"
+                />
+              </button>
+              {img.caption && (
+                <figcaption class="px-3.5 py-2.5 text-xs leading-relaxed text-muted">{img.caption}</figcaption>
+              )}
+            </>
+          )
+        })()}
       </figure>
     ))
   }

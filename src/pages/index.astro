@@ -49,10 +49,10 @@ const homeGallery = [
         behavior, and survival of the most expressive wild cat of the Central Asian steppe.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
-        <a href="/overview" class="rounded-full bg-rust px-6 py-3 text-sm font-semibold text-parchment transition hover:bg-rust-deep">
+        <a href="/overview/" class="rounded-full bg-rust px-6 py-3 text-sm font-semibold text-parchment transition hover:bg-rust-deep">
           Begin the guide
         </a>
-        <a href="/gallery" class="rounded-full border border-parchment/40 bg-parchment/5 px-6 py-3 text-sm font-semibold text-parchment backdrop-blur-sm transition hover:bg-parchment/15">
+        <a href="/gallery/" class="rounded-full border border-parchment/40 bg-parchment/5 px-6 py-3 text-sm font-semibold text-parchment backdrop-blur-sm transition hover:bg-parchment/15">
           View the gallery
         </a>
       </div>
@@ -90,7 +90,7 @@ const homeGallery = [
         <p class="eyebrow text-rust">At a glance</p>
         <h2 class="mt-2 font-serif text-3xl font-semibold tracking-tight text-ink">Quick facts</h2>
       </div>
-      <a href="/field-guide" class="hidden text-sm font-semibold text-ink underline-offset-4 hover:underline sm:block">Full field guide &rarr;</a>
+      <a href="/field-guide/" class="hidden text-sm font-semibold text-ink underline-offset-4 hover:underline sm:block">Full field guide &rarr;</a>
     </div>
     <dl class="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-[var(--radius-card)] border border-line bg-line md:grid-cols-3 lg:grid-cols-5">
       {quickFacts.map((f) => (
@@ -117,10 +117,8 @@ const homeGallery = [
             <Image
               src={t.image}
               alt={t.title}
-              layout="constrained"
               width={900}
               quality={75}
-              sizes="(max-width: 768px) calc((100vw - 2.5rem) / 2), (max-width: 1024px) calc((100vw - 2rem) / 2), calc((100vw - 3rem) / 3)"
               loading={i < 3 ? "eager" : "lazy"}
               decoding="async"
               class="h-full w-full object-cover"
@@ -171,7 +169,7 @@ const homeGallery = [
         <p class="eyebrow text-rust">Selected imagery</p>
         <h2 class="mt-2 font-serif text-3xl font-semibold tracking-tight text-ink sm:text-4xl">From the gallery</h2>
       </div>
-      <a href="/gallery" class="shrink-0 text-sm font-semibold text-ink underline-offset-4 hover:underline">See all photos &rarr;</a>
+      <a href="/gallery/" class="shrink-0 text-sm font-semibold text-ink underline-offset-4 hover:underline">See all photos &rarr;</a>
     </div>
     <Gallery images={homeGallery} columns={3} eager={1} />
   </section>

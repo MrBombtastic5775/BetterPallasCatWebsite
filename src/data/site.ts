@@ -21,51 +21,51 @@ export interface Topic {
 export const topics: { title: string; href: string; blurb: string; image: ImageMetadata }[] = [
   {
     title: "Species Overview",
-    href: "/overview",
+    href: "/overview/",
     blurb: "Taxonomy, anatomy, and the unmistakable features that make the manul one of the world's most distinctive small cats.",
     image: overviewHero,
   },
   {
     title: "Habitat & Range",
-    href: "/habitat",
+    href: "/habitat/",
     blurb: "The cold steppes, rocky outcrops, and high plateaus of Central Asia where Pallas's cats make their home.",
     image: habitatHero,
   },
   {
     title: "Behavior",
-    href: "/behavior",
+    href: "/behavior/",
     blurb: "Solitary, secretive, and superbly camouflaged — how the manul hunts, hides, and survives.",
     image: behaviorHero,
   },
   {
     title: "Diet & Hunting",
-    href: "/diet",
+    href: "/diet/",
     blurb: "Pikas, voles, and small birds: the ambush predator's menu and stalking strategy.",
     image: dietHero,
   },
   {
     title: "Reproduction & Lifespan",
-    href: "/reproduction",
+    href: "/reproduction/",
     blurb: "A brief breeding season, vulnerable kittens, and the challenges of growing up on the steppe.",
     image: reproHero,
   },
   {
     title: "Conservation",
-    href: "/conservation",
+    href: "/conservation/",
     blurb: "Threats, protections, and the global effort to safeguard a famously hard-to-study cat.",
     image: conservationHero,
   },
 ]
 
 export const mainNav: NavItem[] = [
-  { label: "Overview", href: "/overview" },
-  { label: "Habitat", href: "/habitat" },
-  { label: "Behavior", href: "/behavior" },
-  { label: "Diet", href: "/diet" },
-  { label: "Reproduction", href: "/reproduction" },
-  { label: "Conservation", href: "/conservation" },
-  { label: "Field Guide", href: "/field-guide" },
-  { label: "Gallery", href: "/gallery" },
+  { label: "Overview", href: "/overview/" },
+  { label: "Habitat", href: "/habitat/" },
+  { label: "Behavior", href: "/behavior/" },
+  { label: "Diet", href: "/diet/" },
+  { label: "Reproduction", href: "/reproduction/" },
+  { label: "Conservation", href: "/conservation/" },
+  { label: "Field Guide", href: "/field-guide/" },
+  { label: "Gallery", href: "/gallery/" },
 ]
 
 export const quickFacts = [
