@@ -4,6 +4,10 @@ import TopicHero from "../components/TopicHero.astro"
 import TopicNav from "../components/TopicNav.astro"
 import Figure from "../components/Figure.astro"
 import Gallery from "../components/Gallery.astro"
+import { Image } from 'astro:assets'
+import dietHero from "../assets/images/diet-hero.jpg"
+import gallery02 from "../assets/images/gallery-02.jpg"
+import gallery07 from "../assets/images/gallery-07.jpg"
 
 const prey = [
   { label: "Pikas", text: "Small, rabbit-like lagomorphs that form the dietary cornerstone across much of the manul's range." },
@@ -13,22 +17,22 @@ const prey = [
 ]
 
 const gallery = [
-  { src: "/images/diet-hero.jpg", alt: "A Pallas's cat stalking across the steppe at dusk", caption: "A patient, low stalk replaces the sprint most cats rely on." },
-  { src: "/images/gallery-02.jpg", alt: "A Pallas's cat moving across open ground", caption: "Hunting routes follow cover between rocks and burrow fields." },
-  { src: "/images/gallery-07.jpg", alt: "A Pallas's cat reaching up against a rock", caption: "Flushing prey from crevices calls for patience and precision." },
+  { src: dietHero, alt: "A Pallas's cat stalking across the steppe at dusk", caption: "A patient, low stalk replaces the sprint most cats rely on." },
+  { src: gallery02, alt: "A Pallas's cat moving across open ground", caption: "Hunting routes follow cover between rocks and burrow fields." },
+  { src: gallery07, alt: "A Pallas's cat reaching up against a rock", caption: "Flushing prey from crevices calls for patience and precision." },
 ]
 ---
 
 <BaseLayout
   title="Diet & Hunting — The Manul Atlas"
   description="The ambush strategy and prey of the Pallas's cat: pikas, voles, small birds and more."
-  image="/images/diet-hero.jpg"
+  image={dietHero}
 >
   <TopicHero
     eyebrow="Chapter 04 · Diet & Hunting"
     title="The patient ambush predator"
     intro="The manul is a specialist of small steppe prey, trading the sprint of other cats for stillness, stalking, and a hunter's endless patience."
-    image="/images/diet-hero.jpg"
+    image={dietHero}
     imageAlt="A Pallas's cat in a low stalking posture at dusk"
   />
 
@@ -50,10 +54,11 @@ const gallery = [
 
     <div class="my-12">
       <Figure
-        src="/images/diet-hero.jpg"
+        src={dietHero}
         alt="A Pallas's cat in an intense low stalking posture"
         caption="Hunting success is tightly linked to prey availability. Where pika and rodent populations crash, manul numbers often follow — a vulnerability for a specialist predator."
         ratio="16/10"
+        loading="eager"
       />
     </div>
 
@@ -84,7 +89,7 @@ const gallery = [
   </article>
 
   <section class="mx-auto max-w-7xl px-5 lg:px-8">
-    <Gallery images={gallery} columns={3} />
+    <Gallery images={gallery} columns={3} eager={1} />
   </section>
 
   <TopicNav current="/diet" />

@@ -4,6 +4,10 @@ import TopicHero from "../components/TopicHero.astro"
 import TopicNav from "../components/TopicNav.astro"
 import Figure from "../components/Figure.astro"
 import Gallery from "../components/Gallery.astro"
+import { Image } from 'astro:assets'
+import conservationHero from "../assets/images/conservation-hero.jpg"
+import gallery01 from "../assets/images/gallery-01.jpg"
+import gallery12 from "../assets/images/gallery-12.jpg"
 
 const threats = [
   { label: "Habitat degradation", text: "Overgrazing, mining, and infrastructure fragment the steppe and erode the prey base the cat depends on." },
@@ -20,22 +24,22 @@ const efforts = [
 ]
 
 const gallery = [
-  { src: "/images/conservation-hero.jpg", alt: "A lone Pallas's cat on a ridge at golden hour", caption: "Naturally sparse and hard to count, the manul is easy to overlook in conservation planning." },
-  { src: "/images/gallery-01.jpg", alt: "A Pallas's cat in snow", caption: "Cold-adapted and range-restricted, with little room to shift as conditions change." },
-  { src: "/images/gallery-12.jpg", alt: "A Pallas's cat in autumn grassland", caption: "Healthy steppe and intact prey populations are the foundation of its future." },
+  { src: conservationHero, alt: "A lone Pallas's cat on a ridge at golden hour", caption: "Naturally sparse and hard to count, the manul is easy to overlook in conservation planning." },
+  { src: gallery01, alt: "A Pallas's cat in snow", caption: "Cold-adapted and range-restricted, with little room to shift as conditions change." },
+  { src: gallery12, alt: "A Pallas's cat in autumn grassland", caption: "Healthy steppe and intact prey populations are the foundation of its future." },
 ]
 ---
 
 <BaseLayout
   title="Conservation — The Manul Atlas"
   description="Threats facing the Pallas's cat, its IUCN status, and the global effort to protect it."
-  image="/images/conservation-hero.jpg"
+  image={conservationHero}
 >
   <TopicHero
     eyebrow="Chapter 06 · Conservation"
     title="Protecting a cat we barely see"
     intro="Naturally rare, widely scattered, and notoriously difficult to study, the manul presents one of the harder puzzles in small-cat conservation."
-    image="/images/conservation-hero.jpg"
+    image={conservationHero}
     imageAlt="A lone Pallas's cat overlooking a vast steppe at golden hour"
   />
 
@@ -58,10 +62,11 @@ const gallery = [
 
     <div class="my-12">
       <Figure
-        src="/images/conservation-hero.jpg"
+        src={conservationHero}
         alt="A solitary Pallas's cat on a rocky ridge at sunset"
         caption="Conserving the manul means conserving the steppe itself: its prey, its burrow-digging neighbors, and the wide, intact landscapes that a low-density predator needs to persist."
         ratio="16/10"
+        loading="eager"
       />
     </div>
 
@@ -103,7 +108,7 @@ const gallery = [
   </article>
 
   <section class="mx-auto max-w-7xl px-5 lg:px-8">
-    <Gallery images={gallery} columns={3} />
+    <Gallery images={gallery} columns={3} eager={1} />
   </section>
 
   <TopicNav current="/conservation" />

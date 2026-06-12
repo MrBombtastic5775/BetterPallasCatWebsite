@@ -1,6 +1,9 @@
 ---
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro:assets'
+
 interface ImageItem {
-  src: string
+  src: ImageMetadata
   alt: string
   caption?: string
 }
@@ -8,9 +11,10 @@ interface ImageItem {
 interface Props {
   images: ImageItem[]
   columns?: 2 | 3 | 4
+  eager?: number
 }
 
-const { images, columns = 3 } = Astro.props
+const { images, columns = 3, eager = 0 } = Astro.props
 
 const colClass = {
   2: "sm:columns-2",
@@ -26,14 +30,16 @@ const colClass = {
         <button
           type="button"
           class="gallery-trigger block w-full text-left"
-          data-src={img.src}
+          data-src={img.src.src}
           data-alt={img.alt}
           data-caption={img.caption ?? img.alt}
         >
-          <img
+          <Image
             src={img.src}
             alt={img.alt}
-            loading={i < 3 ? "eager" : "lazy"}
+            width={img.src.width}
+            height={img.src.height}
+            loading={i < eager ? "eager" : "lazy"}
             decoding="async"
             class="w-full object-cover"
           />
@@ -58,7 +64,7 @@ const colClass = {
     <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
   </button>
   <figure class="flex max-h-[88vh] max-w-5xl flex-col items-center">
-    <img id="lightbox-img" src="" alt="" class="max-h-[80vh] w-auto rounded-lg object-contain" />
+    <img id="lightbox-img" src="" alt="" loading="lazy" class="max-h-[80vh] w-auto rounded-lg object-contain" />
     <figcaption id="lightbox-caption" class="mt-3 max-w-2xl text-center text-sm text-parchment/80"></figcaption>
   </figure>
 </div>

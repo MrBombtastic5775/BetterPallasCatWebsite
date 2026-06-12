@@ -4,6 +4,10 @@ import TopicHero from "../components/TopicHero.astro"
 import TopicNav from "../components/TopicNav.astro"
 import Figure from "../components/Figure.astro"
 import Gallery from "../components/Gallery.astro"
+import { Image } from 'astro:assets'
+import reproHero from "../assets/images/repro-hero.jpg"
+import gallery09 from "../assets/images/gallery-09.jpg"
+import gallery05 from "../assets/images/gallery-05.jpg"
 
 const cycle = [
   { label: "Breeding season", text: "A short window in late winter and early spring. Females are receptive for only a day or two, making timing critical." },
@@ -13,22 +17,22 @@ const cycle = [
 ]
 
 const gallery = [
-  { src: "/images/repro-hero.jpg", alt: "Two Pallas's cat kittens at a den entrance", caption: "Litters shelter in dens until they are strong enough to follow the hunt." },
-  { src: "/images/gallery-09.jpg", alt: "A single Pallas's cat kitten exploring", caption: "Young manuls face steep odds in their first year." },
-  { src: "/images/gallery-05.jpg", alt: "A Pallas's cat resting curled among rocks", caption: "Adults are long-lived in captivity but face a far shorter span in the wild." },
+  { src: reproHero, alt: "Two Pallas's cat kittens at a den entrance", caption: "Litters shelter in dens until they are strong enough to follow the hunt." },
+  { src: gallery09, alt: "A single Pallas's cat kitten exploring", caption: "Young manuls face steep odds in their first year." },
+  { src: gallery05, alt: "A Pallas's cat resting curled among rocks", caption: "Adults are long-lived in captivity but face a far shorter span in the wild." },
 ]
 ---
 
 <BaseLayout
   title="Reproduction & Lifespan — The Manul Atlas"
   description="Breeding season, vulnerable kittens, and the lifespan of the Pallas's cat in the wild and captivity."
-  image="/images/repro-hero.jpg"
+  image={reproHero}
 >
   <TopicHero
     eyebrow="Chapter 05 · Reproduction & Lifespan"
     title="A narrow window, a hard beginning"
     intro="The manul's brief breeding season and vulnerable young reflect the demands of raising a litter on one of the planet's most unforgiving landscapes."
-    image="/images/repro-hero.jpg"
+    image={reproHero}
     imageAlt="Two fluffy Pallas's cat kittens peering from a rocky den"
   />
 
@@ -50,7 +54,7 @@ const gallery = [
 
     <div class="my-12">
       <Figure
-        src="/images/gallery-09.jpg"
+        src={gallery09}
         alt="A young Pallas's cat kitten exploring rocky ground"
         caption="Mortality in the first year is high. Harsh weather, predators such as eagles and foxes, and the difficulty of learning to hunt all take a heavy toll on young manuls."
         ratio="16/10"

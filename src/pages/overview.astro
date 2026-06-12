@@ -4,6 +4,12 @@ import TopicHero from "../components/TopicHero.astro"
 import TopicNav from "../components/TopicNav.astro"
 import Figure from "../components/Figure.astro"
 import Gallery from "../components/Gallery.astro"
+import { Image } from 'astro:assets'
+import overviewHero from "../assets/images/overview-hero.jpg"
+import gallery02 from "../assets/images/gallery-02.jpg"
+import gallery03 from "../assets/images/gallery-03.jpg"
+import textureFur from "../assets/images/texture-fur.jpg"
+import gallery01 from "../assets/images/gallery-01.jpg"
 
 const anatomy = [
   { label: "Coat", text: "The densest and longest fur of any cat relative to body size — up to 9,000 hairs per cm² — which nearly doubles in length on the belly and tail for winter insulation." },
@@ -13,22 +19,22 @@ const anatomy = [
 ]
 
 const gallery = [
-  { src: "/images/gallery-02.jpg", alt: "Full body profile of a Pallas's cat walking", caption: "The low, stocky build and short legs are clear in profile." },
-  { src: "/images/gallery-03.jpg", alt: "Close-up of a Pallas's cat's round pupils", caption: "Round pupils set the manul apart from most small cats." },
-  { src: "/images/texture-fur.jpg", alt: "Macro texture of dense Pallas's cat fur", caption: "Silver guard hairs with white tips create a frosted look." },
+  { src: gallery02, alt: "Full body profile of a Pallas's cat walking", caption: "The low, stocky build and short legs are clear in profile." },
+  { src: gallery03, alt: "Close-up of a Pallas's cat's round pupils", caption: "Round pupils set the manul apart from most small cats." },
+  { src: textureFur, alt: "Macro texture of dense Pallas's cat fur", caption: "Silver guard hairs with white tips create a frosted look." },
 ]
 ---
 
 <BaseLayout
   title="Species Overview — The Manul Atlas"
   description="Taxonomy, anatomy, and the unmistakable features of the Pallas's cat (Otocolobus manul)."
-  image="/images/overview-hero.jpg"
+  image={overviewHero}
 >
   <TopicHero
     eyebrow="Chapter 01 · Species Overview"
     title="A small cat unlike any other"
     intro="Compact, frost-furred, and instantly recognizable, the Pallas's cat is the sole living member of its genus — a felid shaped entirely by the cold open country it calls home."
-    image="/images/overview-hero.jpg"
+    image={overviewHero}
     imageAlt="Close-up portrait of a Pallas's cat's distinctive flat face"
   />
 
@@ -50,10 +56,11 @@ const gallery = [
 
     <div class="my-12">
       <Figure
-        src="/images/gallery-01.jpg"
+        src={gallery01}
         alt="A Pallas's cat with a thick winter coat sitting in snow"
         caption="In winter, the coat lengthens and thickens dramatically, especially on the underside, insulating the cat against temperatures that routinely fall well below freezing."
         ratio="16/10"
+        loading="eager"
       />
     </div>
 
@@ -85,7 +92,7 @@ const gallery = [
   </article>
 
   <section class="mx-auto max-w-7xl px-5 lg:px-8">
-    <Gallery images={gallery} columns={3} />
+    <Gallery images={gallery} columns={3} eager={1} />
   </section>
 
   <TopicNav current="/overview" />

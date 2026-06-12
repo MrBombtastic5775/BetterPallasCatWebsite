@@ -4,6 +4,11 @@ import TopicHero from "../components/TopicHero.astro"
 import TopicNav from "../components/TopicNav.astro"
 import Figure from "../components/Figure.astro"
 import Gallery from "../components/Gallery.astro"
+import { Image } from 'astro:assets'
+import behaviorHero from "../assets/images/behavior-hero.jpg"
+import gallery04 from "../assets/images/gallery-04.jpg"
+import gallery10 from "../assets/images/gallery-10.jpg"
+import gallery08 from "../assets/images/gallery-08.jpg"
 
 const traits = [
   { label: "Solitary", text: "Outside the brief breeding season, manuls live alone, maintaining and patrolling individual home ranges marked with scent." },
@@ -13,23 +18,23 @@ const traits = [
 ]
 
 const gallery = [
-  { src: "/images/behavior-hero.jpg", alt: "A camouflaged Pallas's cat among rocks", caption: "Freeze and blend: the manul's first line of defense is stillness." },
-  { src: "/images/gallery-04.jpg", alt: "A Pallas's cat peeking over a rock", caption: "Low-set ears let it peer over cover without breaking its outline." },
-  { src: "/images/gallery-10.jpg", alt: "A Pallas's cat hidden in tall grass", caption: "Dappled cover and a frosted coat make it nearly invisible." },
-  { src: "/images/gallery-08.jpg", alt: "A Pallas's cat yawning", caption: "Expressive faces have made the manul a favorite of wildlife photographers." },
+  { src: behaviorHero, alt: "A camouflaged Pallas's cat among rocks", caption: "Freeze and blend: the manul's first line of defense is stillness." },
+  { src: gallery04, alt: "A Pallas's cat peeking over a rock", caption: "Low-set ears let it peer over cover without breaking its outline." },
+  { src: gallery10, alt: "A Pallas's cat hidden in tall grass", caption: "Dappled cover and a frosted coat make it nearly invisible." },
+  { src: gallery08, alt: "A Pallas's cat yawning", caption: "Expressive faces have made the manul a favorite of wildlife photographers." },
 ]
 ---
 
 <BaseLayout
   title="Behavior — The Manul Atlas"
   description="How the secretive, solitary Pallas's cat hunts, hides, and survives on the open steppe."
-  image="/images/behavior-hero.jpg"
+  image={behaviorHero}
 >
   <TopicHero
     eyebrow="Chapter 03 · Behavior"
     title="The art of disappearing"
     intro="Solitary, secretive, and superbly camouflaged, the manul has built its entire behavioral repertoire around one idea: not being seen."
-    image="/images/behavior-hero.jpg"
+    image={behaviorHero}
     imageAlt="A Pallas's cat crouched and camouflaged among grey rocks"
   />
 
@@ -52,10 +57,11 @@ const gallery = [
 
     <div class="my-12">
       <Figure
-        src="/images/gallery-04.jpg"
+        src={gallery04}
         alt="A Pallas's cat with only its head visible above a rock"
         caption="The flattened face and low ears are not just curiosities of appearance — they let the manul watch over a ridge or rock while exposing almost nothing of itself."
         ratio="16/10"
+        loading="eager"
       />
     </div>
 
@@ -85,7 +91,7 @@ const gallery = [
   </article>
 
   <section class="mx-auto max-w-7xl px-5 lg:px-8">
-    <Gallery images={gallery} columns={2} />
+    <Gallery images={gallery} columns={2} eager={1} />
   </section>
 
   <TopicNav current="/behavior" />

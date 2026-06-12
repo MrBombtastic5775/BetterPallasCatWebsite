@@ -4,6 +4,11 @@ import TopicHero from "../components/TopicHero.astro"
 import TopicNav from "../components/TopicNav.astro"
 import Figure from "../components/Figure.astro"
 import Gallery from "../components/Gallery.astro"
+import { Image } from 'astro:assets'
+import habitatHero from "../assets/images/habitat-hero.jpg"
+import gallery11 from "../assets/images/gallery-11.jpg"
+import gallery12 from "../assets/images/gallery-12.jpg"
+import gallery06 from "../assets/images/gallery-06.jpg"
 
 const ranges = [
   { region: "Mongolia & China", text: "The stronghold of the species. Vast steppe, semi-desert, and rocky grassland on the Mongolian Plateau support the densest known populations." },
@@ -13,23 +18,23 @@ const ranges = [
 ]
 
 const gallery = [
-  { src: "/images/habitat-hero.jpg", alt: "Wide steppe and rocky highland habitat", caption: "Open grassland broken by rock — ideal terrain for an ambush hunter." },
-  { src: "/images/gallery-11.jpg", alt: "A Pallas's cat surveying a steppe valley from a ridge", caption: "Rocky ridges double as shelter and lookout posts." },
-  { src: "/images/gallery-12.jpg", alt: "A Pallas's cat in autumn steppe grasses", caption: "Seasonal color shifts across the range, from grey plateau to ochre desert margin." },
-  { src: "/images/gallery-06.jpg", alt: "A Pallas's cat in deep winter snow", caption: "Winters are long and severe; insulation and shelter are everything." },
+  { src: habitatHero, alt: "Wide steppe and rocky highland habitat", caption: "Open grassland broken by rock — ideal terrain for an ambush hunter." },
+  { src: gallery11, alt: "A Pallas's cat surveying a steppe valley from a ridge", caption: "Rocky ridges double as shelter and lookout posts." },
+  { src: gallery12, alt: "A Pallas's cat in autumn steppe grasses", caption: "Seasonal color shifts across the range, from grey plateau to ochre desert margin." },
+  { src: gallery06, alt: "A Pallas's cat in deep winter snow", caption: "Winters are long and severe; insulation and shelter are everything." },
 ]
 ---
 
 <BaseLayout
   title="Habitat & Range — The Manul Atlas"
   description="The cold steppes, rocky outcrops, and high plateaus of Central Asia where Pallas's cats live."
-  image="/images/habitat-hero.jpg"
+  image={habitatHero}
 >
   <TopicHero
     eyebrow="Chapter 02 · Habitat & Range"
     title="A life written into cold, open country"
     intro="From the Mongolian steppe to the roof of the Tibetan Plateau, the manul occupies some of the harshest, most exposed landscapes any cat calls home."
-    image="/images/habitat-hero.jpg"
+    image={habitatHero}
     imageAlt="Sweeping steppe and rocky highland habitat"
   />
 
@@ -51,10 +56,11 @@ const gallery = [
 
     <div class="my-12">
       <Figure
-        src="/images/gallery-11.jpg"
+        src={gallery11}
         alt="A Pallas's cat perched on a rocky ledge above a vast valley"
         caption="Rocky ridges provide three things at once: shelter from wind and cold, concealment from larger predators, and an elevated vantage for watching the open ground below."
         ratio="16/10"
+        loading="eager"
       />
     </div>
 
@@ -85,7 +91,7 @@ const gallery = [
   </article>
 
   <section class="mx-auto max-w-7xl px-5 lg:px-8">
-    <Gallery images={gallery} columns={2} />
+    <Gallery images={gallery} columns={2} eager={1} />
   </section>
 
   <TopicNav current="/habitat" />
