@@ -60,7 +60,7 @@ const gallery = [
         alt="A Pallas's cat with a thick winter coat sitting in snow"
         caption="In winter, the coat lengthens and thickens dramatically, especially on the underside, insulating the cat against temperatures that routinely fall well below freezing."
         ratio="16/10"
-        loading="eager"
+        loading="lazy"
       />
     </div>
 
@@ -92,7 +92,7 @@ const gallery = [
   </article>
 
   <section class="mx-auto max-w-7xl px-5 lg:px-8">
-    <Gallery images={gallery} columns={3} eager={1} />
+    <Gallery images={gallery} columns={3} />
   </section>
 
   <TopicNav current="/overview" />

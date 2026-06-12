@@ -7,6 +7,9 @@ import cloudflare from "@astrojs/cloudflare";
 export default defineConfig({
   site: "https://pallas-cat-atlas.pages.dev",
   integrations: [sitemap()],
+  build: {
+    inlineStylesheets: "always",
+  },
 
   vite: {
     plugins: [tailwindcss()],

@@ -26,7 +26,15 @@ const homeGallery = [
   <!-- HERO -->
   <section class="relative min-h-[88vh] overflow-hidden">
     <div class="absolute inset-0">
-      <Image src={homeHero} alt="A Pallas's cat sitting on a frost-covered rock at dawn in the Mongolian steppe" width={homeHero.width} height={homeHero.height} class="h-full w-full object-cover" />
+      <Image
+        src={homeHero}
+        alt="A Pallas's cat sitting on a frost-covered rock at dawn in the Mongolian steppe"
+        layout="full-width"
+        width={1600}
+        quality={75}
+        priority
+        class="h-full w-full object-cover"
+      />
       <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-ink/25"></div>
       <div class="absolute inset-0 bg-gradient-to-r from-ink/55 to-transparent"></div>
     </div>
@@ -106,7 +114,17 @@ const homeGallery = [
       {topics.map((t, i) => (
         <a href={t.href} class="reveal img-zoom group flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-parchment-2 transition hover:border-ink/25">
           <div class="aspect-[16/10] overflow-hidden bg-stone">
-            <Image src={t.image} alt={t.title} width={t.image.width} height={t.image.height} loading={i < 3 ? "eager" : "lazy"} decoding="async" class="h-full w-full object-cover" />
+            <Image
+              src={t.image}
+              alt={t.title}
+              layout="constrained"
+              width={900}
+              quality={75}
+              sizes="(max-width: 768px) calc((100vw - 2.5rem) / 2), (max-width: 1024px) calc((100vw - 2rem) / 2), calc((100vw - 3rem) / 3)"
+              loading={i < 3 ? "eager" : "lazy"}
+              decoding="async"
+              class="h-full w-full object-cover"
+            />
           </div>
           <div class="flex flex-1 flex-col p-6">
             <span class="text-xs font-semibold tracking-[0.16em] text-rust">{String(i + 1).padStart(2, "0")}</span>
@@ -125,7 +143,14 @@ const homeGallery = [
   <!-- FULL-BLEED FEATURE -->
   <section class="relative my-16 overflow-hidden">
     <div class="relative h-[60vh] min-h-[420px]">
-      <Image src={gallery03} alt="Extreme close-up of a Pallas's cat's amber eyes and dense facial fur" width={gallery03.width} height={gallery03.height} class="h-full w-full object-cover" />
+      <Image
+        src={gallery03}
+        alt="Extreme close-up of a Pallas's cat's amber eyes and dense facial fur"
+        layout="full-width"
+        width={1400}
+        quality={75}
+        class="h-full w-full object-cover"
+      />
       <div class="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/40 to-transparent"></div>
       <div class="absolute inset-0 flex items-center">
         <div class="mx-auto w-full max-w-7xl px-5 lg:px-8">

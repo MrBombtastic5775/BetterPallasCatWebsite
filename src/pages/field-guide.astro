@@ -100,7 +100,17 @@ const didYouKnow = [
       {topics.map((t) => (
         <a href={t.href} class="reveal group overflow-hidden rounded-[var(--radius-card)] border border-line bg-parchment-2 transition hover:border-ink/30">
           <div class="img-zoom aspect-[16/10] overflow-hidden bg-stone">
-            <Image src={t.image} alt={t.title} width={t.image.width} height={t.image.height} loading="lazy" decoding="async" class="h-full w-full object-cover" />
+            <Image
+              src={t.image}
+              alt={t.title}
+              layout="constrained"
+              width={900}
+              quality={75}
+              sizes="(max-width: 768px) calc((100vw - 2.5rem) / 2), (max-width: 1024px) calc((100vw - 2rem) / 2), calc((100vw - 3rem) / 3)"
+              loading="lazy"
+              decoding="async"
+              class="h-full w-full object-cover"
+            />
           </div>
           <div class="p-5">
             <h3 class="font-serif text-xl font-semibold text-ink">{t.title}</h3>

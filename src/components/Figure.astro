@@ -14,8 +14,8 @@ const { src, alt, caption, ratio = "16/10", rounded = true, loading = "lazy" } =
 ---
 
 <figure class="reveal my-2">
-  <div class={`img-zoom overflow-hidden border border-line bg-stone ${rounded ? "rounded-[var(--radius-card)]" : ""}`}>
-    <Image src={src} alt={alt} width={src.width} height={src.height} loading="lazy" decoding="async" style={`aspect-ratio:${ratio}`} class="w-full object-cover" />
+  <div class={`img-zoom overflow-hidden border border-line bg-stone ${rounded ? "rounded-[var(--radius-card)]" : ""}`} style={`aspect-ratio:${ratio}`}>
+    <Image src={src} alt={alt} layout="constrained" width={900} quality={70} sizes="(max-width: 768px) 100vw, 720px" loading={loading} decoding="async" class="h-full w-full object-cover" />
   </div>
   {caption && <figcaption class="mt-2.5 text-sm leading-relaxed text-muted">{caption}</figcaption>}
 </figure>
