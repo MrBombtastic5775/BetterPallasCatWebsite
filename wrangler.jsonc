@@ -1,6 +1,8 @@
 {
 	"compatibility_date": "2026-06-12",
-	"compatibility_flags": ["global_fetch_strictly_public"],
+	"compatibility_flags": [
+		"global_fetch_strictly_public"
+	],
 	"name": "pallas-cat-atlas",
 	"main": "@astrojs/cloudflare/entrypoints/server",
 	"assets": {
