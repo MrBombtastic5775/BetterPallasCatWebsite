@@ -5,7 +5,7 @@ import sitemap from "@astrojs/sitemap"
 import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
-  site: "https://pallas-cat-atlas.vercel.app",
+  site: "https://pallas-cat-atlas.pages.dev",
   integrations: [sitemap()],
 
   vite: {
