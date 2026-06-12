@@ -15,6 +15,4 @@ export default defineConfig({
   server: {
     host: true,
   },
-
-  adapter: cloudflare(),
 })
