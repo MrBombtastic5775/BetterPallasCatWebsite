@@ -1,0 +1,9 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+  "mcp": {
+    "astro-docs": {
+      "type": "remote",
+      "url": "https://mcp.docs.astro.build/mcp"
+    }
+  }
+}
