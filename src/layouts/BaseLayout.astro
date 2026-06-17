@@ -10,16 +10,20 @@ interface Props {
   title: string
   description?: string
   image?: ImageMetadata | string
+  heroImage?: ImageMetadata | string
 }
 
 const {
   title,
   description = "A comprehensive, image-rich field guide to the Pallas's cat (Otocolobus manul) — its biology, habitat, behavior, and conservation.",
   image,
+  heroImage,
 } = Astro.props
 
 const ogImage = typeof image === 'undefined' ? undefined : typeof image === 'string' ? image : getImage({ src: image, width: 1200, quality: 80, widths: [1200] }).src
 const canonical = new URL(Astro.url.pathname, Astro.site)
+
+const heroPreload = heroImage ? (typeof heroImage === 'string' ? heroImage : getImage({ src: heroImage, width: 1600, quality: 75, format: 'webp' }).src) : undefined
 ---
 
 <!doctype html>
@@ -40,22 +44,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site)
     {ogImage && <meta property="og:image" content={ogImage} />}
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap"
-      />
-    </noscript>
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/Fraunces-Variable.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/Inter-Variable.woff2" crossorigin />
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+    {heroPreload && <link rel="preload" as="image" href={heroPreload} fetchpriority="high" />}
   </head>
-  <body class="paper min-h-screen">
+  <body class="min-h-screen">
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-ink focus:px-4 focus:py-2 focus:text-parchment">Skip to content</a>
     <Header />
     <main id="main">

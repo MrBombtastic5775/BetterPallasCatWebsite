@@ -31,42 +31,30 @@ const gallerySizes =
 ---
 
 <div class={`gallery-grid ${colClass} gap-4 [column-fill:_balance]`}>
-  {await Promise.all(images.map(async (img, i) => {
-    const optimized = await getImage({
-      src: img.src,
-      width: 750,
-      quality: 65,
-      sizes: gallerySizes,
-    })
-    return (
-      <figure class="reveal img-zoom mb-4 break-inside-avoid overflow-hidden rounded-[var(--radius-card)] border border-line bg-stone">
-        <>
-          <button
-            type="button"
-            class="gallery-trigger block w-full text-left"
-            data-src={optimized.src.toString()}
-            data-alt={img.alt}
-            data-caption={img.caption ?? img.alt}
-          >
-            <Image
-              src={img.src}
-              alt={img.alt}
-              width={750}
-              quality={65}
-              sizes={gallerySizes}
-              loading={i < eager ? "eager" : "lazy"}
-              decoding="async"
-              class="w-full object-cover"
-            />
-          </button>
-          {img.caption && (
-            <figcaption class="px-3.5 py-2.5 text-xs leading-relaxed text-muted">{img.caption}</figcaption>
-          )}
-        </>
-      </figure>
-    )
-  }))
-}
+  {images.map((img, i) => (
+    <figure class="reveal img-zoom mb-4 break-inside-avoid overflow-hidden rounded-[var(--radius-card)] border border-line bg-stone">
+      <button
+        type="button"
+        class="gallery-trigger block w-full text-left"
+        data-alt={img.alt}
+        data-caption={img.caption ?? img.alt}
+      >
+        <Image
+          src={img.src}
+          alt={img.alt}
+          width={750}
+          quality={65}
+          sizes={gallerySizes}
+          loading={i < eager ? "eager" : "lazy"}
+          decoding="async"
+          class="w-full object-cover"
+        />
+      </button>
+      {img.caption && (
+        <figcaption class="px-3.5 py-2.5 text-xs leading-relaxed text-muted">{img.caption}</figcaption>
+      )}
+    </figure>
+  ))}
 </div>
 
 <!-- Lightbox -->

@@ -7,13 +7,24 @@ export default defineConfig({
   integrations: [sitemap()],
   image: {
     layout: "constrained",
+    service: {
+      entrypoint: "astro/assets/services/sharp",
+    },
   },
   build: {
     inlineStylesheets: "always",
   },
+  compressHTML: true,
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "viewport",
+  },
 
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      cssCodeSplit: true,
+    },
   },
 
   server: {
