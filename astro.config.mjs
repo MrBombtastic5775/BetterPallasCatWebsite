@@ -15,10 +15,7 @@ export default defineConfig({
     inlineStylesheets: "always",
   },
   compressHTML: true,
-  prefetch: {
-    prefetchAll: true,
-    defaultStrategy: "viewport",
-  },
+  prefetch: false,
 
   vite: {
     plugins: [tailwindcss()],
