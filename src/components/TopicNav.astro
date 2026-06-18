@@ -12,7 +12,7 @@ const next = idx < topics.length - 1 ? topics[idx + 1] : topics[0]
 
 <nav class="mx-auto mt-20 max-w-7xl px-5 lg:px-8">
   <div class="grid gap-4 sm:grid-cols-2">
-    <a href={prev.href} class="reveal group flex items-center gap-4 rounded-[var(--radius-card)] border border-line bg-parchment-2 p-5 transition hover:border-ink/30">
+    <a href={prev.href} class="reveal group flex items-center gap-4 rounded-[var(--radius-card)] border border-line bg-parchment-2 p-5 transition hover:border-ink/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink">
       <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-stone text-ink transition group-hover:bg-ink group-hover:text-parchment">
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
       </span>
@@ -21,7 +21,7 @@ const next = idx < topics.length - 1 ? topics[idx + 1] : topics[0]
         <span class="block font-serif text-lg font-medium text-ink">{prev.title}</span>
       </span>
     </a>
-    <a href={next.href} class="reveal group flex items-center justify-end gap-4 rounded-[var(--radius-card)] border border-line bg-parchment-2 p-5 text-right transition hover:border-ink/30">
+    <a href={next.href} class="reveal group flex items-center justify-end gap-4 rounded-[var(--radius-card)] border border-line bg-parchment-2 p-5 text-right transition hover:border-ink/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink">
       <span>
         <span class="block text-xs uppercase tracking-[0.16em] text-muted">Next</span>
         <span class="block font-serif text-lg font-medium text-ink">{next.title}</span>

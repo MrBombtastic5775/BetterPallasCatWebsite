@@ -51,6 +51,7 @@ const heroPreload = heroImage ? (typeof heroImage === 'string' ? heroImage : get
   </head>
   <body class="min-h-screen">
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-ink focus:px-4 focus:py-2 focus:text-parchment">Skip to content</a>
+    <div id="reading-progress" class="fixed top-0 left-0 h-0.5 bg-rust origin-left transform scale-x-0 z-[100] transition-transform duration-100 ease-out" aria-hidden="true"></div>
     <Header />
     <main id="main">
       <slot />
@@ -71,6 +72,26 @@ const heroPreload = heroImage ? (typeof heroImage === 'string' ? heroImage : get
         { threshold: 0.12 },
       )
       document.querySelectorAll(".reveal").forEach((el) => observer.observe(el))
+
+      // Reading progress indicator
+      const progressBar = document.getElementById("reading-progress")
+      if (progressBar) {
+        let ticking = false
+        function updateProgress() {
+          const scrollTop = window.scrollY
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight
+          const progress = docHeight > 0 ? scrollTop / docHeight : 0
+          progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`
+          ticking = false
+        }
+        window.addEventListener("scroll", () => {
+          if (!ticking) {
+            window.requestAnimationFrame(updateProgress)
+            ticking = true
+          }
+        }, { passive: true })
+        updateProgress()
+      }
     </script>
   </body>
 </html>

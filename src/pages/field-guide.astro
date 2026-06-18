@@ -99,7 +99,7 @@ const didYouKnow = [
     <h2 class="mb-8 font-serif text-3xl font-semibold tracking-tight text-ink">Continue exploring</h2>
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {topics.map((t) => (
-        <a href={t.href} class="reveal group overflow-hidden rounded-[var(--radius-card)] border border-line bg-parchment-2 transition hover:border-ink/30">
+        <a href={t.href} class="reveal group overflow-hidden rounded-[var(--radius-card)] border border-line bg-parchment-2 transition hover:border-ink/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink">
           <div class="img-zoom aspect-[16/10] overflow-hidden bg-stone">
             <Image
               src={t.image}

@@ -35,7 +35,9 @@ const gallerySizes =
     <figure class="reveal img-zoom mb-4 break-inside-avoid overflow-hidden rounded-[var(--radius-card)] border border-line bg-stone">
       <button
         type="button"
-        class="gallery-trigger block w-full text-left"
+        class="gallery-trigger block w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-rust focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+        data-index={i}
+        data-src={getImage({ src: img.src, width: 1600, quality: 80, format: 'webp' }).src}
         data-alt={img.alt}
         data-caption={img.caption ?? img.alt}
       >
@@ -47,6 +49,7 @@ const gallerySizes =
           sizes={gallerySizes}
           loading={i < eager ? "eager" : "lazy"}
           decoding="async"
+          placeholder="blur"
           class="w-full object-cover"
         />
       </button>
@@ -65,8 +68,14 @@ const gallerySizes =
   aria-modal="true"
   aria-label="Image viewer"
 >
-  <button id="lightbox-close" class="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full bg-parchment/10 text-parchment transition hover:bg-parchment/20" aria-label="Close">
+  <button id="lightbox-close" class="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full bg-parchment/10 text-parchment transition hover:bg-parchment/20 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-ink" aria-label="Close">
     <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+  </button>
+  <button id="lightbox-prev" class="absolute left-5 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-parchment/10 text-parchment transition hover:bg-parchment/20 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-ink hidden sm:flex" aria-label="Previous image">
+    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button id="lightbox-next" class="absolute right-5 top-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full bg-parchment/10 text-parchment transition hover:bg-parchment/20 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-ink hidden sm:flex" aria-label="Next image">
+    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
   </button>
   <figure class="flex max-h-[88vh] max-w-5xl flex-col items-center">
     <img id="lightbox-img" src="" alt="" loading="lazy" class="max-h-[80vh] w-auto rounded-lg object-contain" />
@@ -79,36 +88,105 @@ const gallerySizes =
   const lbImg = document.getElementById("lightbox-img")
   const lbCap = document.getElementById("lightbox-caption")
   const closeBtn = document.getElementById("lightbox-close")
+  const prevBtn = document.getElementById("lightbox-prev")
+  const nextBtn = document.getElementById("lightbox-next")
 
-  function open(src, alt, caption) {
+  const triggers = Array.from(document.querySelectorAll(".gallery-trigger"))
+  let currentIndex = -1
+  let touchStartX = 0
+
+  function getImageData(index) {
+    const btn = triggers[index]
+    if (!btn) return null
+    const src = btn.querySelector("img")?.src || ""
+    const alt = btn.getAttribute("data-alt") || ""
+    const caption = btn.getAttribute("data-caption") || ""
+    return { src, alt, caption }
+  }
+
+  function preloadAdjacent(index) {
+    const prev = getImageData((index - 1 + triggers.length) % triggers.length)
+    const next = getImageData((index + 1) % triggers.length)
+    if (prev?.src) { const img = new Image(); img.src = prev.src }
+    if (next?.src) { const img = new Image(); img.src = next.src }
+  }
+
+  function show(index) {
+    if (index < 0 || index >= triggers.length || !lightbox || !lbImg || !lbCap) return
+    const data = getImageData(index)
+    if (!data) return
+    currentIndex = index
+    lbImg.src = data.src
+    lbImg.alt = data.alt
+    lbCap.textContent = data.caption
+    preloadAdjacent(index)
+  }
+
+  function open(index) {
     if (!lightbox || !lbImg || !lbCap) return
-    lbImg.src = src
-    lbImg.alt = alt
-    lbCap.textContent = caption
+    show(index)
     lightbox.classList.remove("hidden")
     lightbox.classList.add("flex")
     document.body.style.overflow = "hidden"
+    closeBtn?.focus()
   }
+
   function close() {
     if (!lightbox) return
     lightbox.classList.add("hidden")
     lightbox.classList.remove("flex")
     document.body.style.overflow = ""
+    if (currentIndex >= 0) triggers[currentIndex]?.focus()
+    currentIndex = -1
   }
 
-  document.querySelectorAll(".gallery-trigger").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const src = btn.getAttribute("data-src") || btn.querySelector("img")?.src || ""
-      const alt = btn.getAttribute("data-alt") || ""
-      const caption = btn.getAttribute("data-caption") || ""
-      open(src, alt, caption)
+  function navigate(dir) {
+    if (currentIndex < 0) return
+    const next = (currentIndex + dir + triggers.length) % triggers.length
+    show(next)
+  }
+
+  triggers.forEach((btn, i) => {
+    btn.addEventListener("click", () => open(i))
+    btn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(i) }
     })
   })
+
   closeBtn?.addEventListener("click", close)
+  prevBtn?.addEventListener("click", () => navigate(-1))
+  nextBtn?.addEventListener("click", () => navigate(1))
+
   lightbox?.addEventListener("click", (e) => {
     if (e.target === lightbox) close()
   })
+
+  lightbox?.addEventListener("touchstart", (e) => { touchStartX = e.changedTouches[0].clientX }, { passive: true })
+  lightbox?.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX
+    if (Math.abs(dx) > 50) navigate(dx > 0 ? -1 : 1)
+  }, { passive: true })
+
   document.addEventListener("keydown", (e) => {
+    if (!lightbox || lightbox.classList.contains("hidden")) return
     if (e.key === "Escape") close()
+    else if (e.key === "ArrowLeft") { e.preventDefault(); navigate(-1) }
+    else if (e.key === "ArrowRight") { e.preventDefault(); navigate(1) }
+    else if (e.key === "Tab") trapFocus(e)
   })
+
+  function trapFocus(e) {
+    const focusable = lightbox.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+    const first = focusable[0]
+    const last = focusable[focusable.length - 1]
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus() }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus() }
+  }
+
+  if (typeof window !== "undefined" && window.matchMedia) {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
+    function handleReducedMotion(e) { document.documentElement.classList.toggle("reduce-motion", e.matches) }
+    mq.addEventListener?.("change", handleReducedMotion)
+    handleReducedMotion(mq)
+  }
 </script>

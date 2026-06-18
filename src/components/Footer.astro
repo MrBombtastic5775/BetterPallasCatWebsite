@@ -16,9 +16,9 @@ import { topics } from "../data/site"
         <h3 class="eyebrow text-gold">Topics</h3>
         <ul class="mt-4 space-y-2.5">
           {topics.map((t) => (
-            <li>
-              <a href={t.href} class="text-sm text-parchment/75 transition-colors hover:text-parchment">{t.title}</a>
-            </li>
+          <li>
+            <a href={t.href} class="text-sm text-parchment/75 transition-colors hover:text-parchment focus:outline-none focus-visible:ring-1 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink rounded-sm">{t.title}</a>
+          </li>
           ))}
         </ul>
       </div>
@@ -26,10 +26,10 @@ import { topics } from "../data/site"
       <div>
         <h3 class="eyebrow text-gold">Explore</h3>
         <ul class="mt-4 space-y-2.5">
-          <li><a href="/field-guide/" class="text-sm text-parchment/75 transition-colors hover:text-parchment">Field Guide & Facts</a></li>
-          <li><a href="/gallery/" class="text-sm text-parchment/75 transition-colors hover:text-parchment">Photo Gallery</a></li>
-          <li><a href="/overview/" class="text-sm text-parchment/75 transition-colors hover:text-parchment">Species Overview</a></li>
-          <li><a href="/conservation/" class="text-sm text-parchment/75 transition-colors hover:text-parchment">Conservation</a></li>
+          <li><a href="/field-guide/" class="text-sm text-parchment/75 transition-colors hover:text-parchment focus:outline-none focus-visible:ring-1 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink rounded-sm">Field Guide & Facts</a></li>
+          <li><a href="/gallery/" class="text-sm text-parchment/75 transition-colors hover:text-parchment focus:outline-none focus-visible:ring-1 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink rounded-sm">Photo Gallery</a></li>
+          <li><a href="/overview/" class="text-sm text-parchment/75 transition-colors hover:text-parchment focus:outline-none focus-visible:ring-1 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink rounded-sm">Species Overview</a></li>
+          <li><a href="/conservation/" class="text-sm text-parchment/75 transition-colors hover:text-parchment focus:outline-none focus-visible:ring-1 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink rounded-sm">Conservation</a></li>
         </ul>
       </div>
 
@@ -45,7 +45,7 @@ import { topics } from "../data/site"
       <p>&copy; {new Date().getFullYear()} The Manul Atlas. For education and conservation awareness.</p>
       <div class="flex items-center gap-4">
         <p>Built with Astro · Steppe-cold, dawn-lit, ever-watchful.</p>
-        <a href="https://github.com/MrBombtastic5775/BetterPallasCatWebsite" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub" class="text-parchment/75 transition-colors hover:text-parchment">
+        <a href="https://github.com/MrBombtastic5775/BetterPallasCatWebsite" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub" class="text-parchment/75 transition-colors hover:text-parchment focus:outline-none focus-visible:ring-1 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink rounded-sm">
           <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current" aria-hidden="true">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.48 2 2 6.59 2 12.26c0 4.52 2.87 8.35 6.84 9.71.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.88-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1.01.07 1.54 1.06 1.54 1.06.89 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.08 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05A9.29 9.29 0 0 1 12 6.83c.85 0 1.7.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.64 1.03 2.76 0 3.95-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.04 10.04 0 0 0 22 12.26C22 6.59 17.52 2 12 2Z"></path>
           </svg>

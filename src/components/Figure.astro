@@ -15,7 +15,7 @@ const { src, alt, caption, ratio = "16/10", rounded = true, loading = "lazy" } =
 
 <figure class="reveal my-2">
   <div class={`img-zoom overflow-hidden border border-line bg-stone ${rounded ? "rounded-[var(--radius-card)]" : ""}`} style={`aspect-ratio:${ratio}`}>
-    <Image src={src} alt={alt} width={750} quality={65} loading={loading} decoding="async" class="h-full w-full object-cover" />
+    <Image src={src} alt={alt} width={750} quality={65} loading={loading} decoding="async" placeholder="blur" class="h-full w-full object-cover" />
   </div>
   {caption && <figcaption class="mt-2.5 text-sm leading-relaxed text-muted">{caption}</figcaption>}
 </figure>

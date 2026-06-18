@@ -49,10 +49,10 @@ const homeGallery = [
         behavior, and survival of the most expressive wild cat of the Central Asian steppe.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
-        <a href="/overview/" class="rounded-full bg-rust px-6 py-3 text-sm font-semibold text-parchment transition hover:bg-rust-deep">
+        <a href="/overview/" class="rounded-full bg-rust px-6 py-3 text-sm font-semibold text-parchment transition hover:bg-rust-deep focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink">
           Begin the guide
         </a>
-        <a href="/gallery/" class="rounded-full border border-parchment/40 bg-parchment/5 px-6 py-3 text-sm font-semibold text-parchment backdrop-blur-sm transition hover:bg-parchment/15">
+        <a href="/gallery/" class="rounded-full border border-parchment/40 bg-parchment/5 px-6 py-3 text-sm font-semibold text-parchment backdrop-blur-sm transition hover:bg-parchment/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink">
           View the gallery
         </a>
       </div>
@@ -90,7 +90,7 @@ const homeGallery = [
         <p class="eyebrow text-rust">At a glance</p>
         <h2 class="mt-2 font-serif text-3xl font-semibold tracking-tight text-ink">Quick facts</h2>
       </div>
-      <a href="/field-guide/" class="hidden text-sm font-semibold text-ink underline-offset-4 hover:underline sm:block">Full field guide &rarr;</a>
+      <a href="/field-guide/" class="hidden text-sm font-semibold text-ink underline-offset-4 hover:underline sm:block focus:outline-none focus-visible:ring-1 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink rounded-sm">Full field guide &rarr;</a>
     </div>
     <dl class="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-[var(--radius-card)] border border-line bg-line md:grid-cols-3 lg:grid-cols-5">
       {quickFacts.map((f) => (
@@ -112,7 +112,7 @@ const homeGallery = [
     </div>
     <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
       {topics.map((t, i) => (
-        <a href={t.href} class="reveal img-zoom group flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-parchment-2 transition hover:border-ink/25">
+        <a href={t.href} class="reveal img-zoom group flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-parchment-2 transition hover:border-ink/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink">
           <div class="aspect-[16/10] overflow-hidden bg-stone">
             <Image
               src={t.image}
@@ -171,7 +171,7 @@ const homeGallery = [
         <p class="eyebrow text-rust">Selected imagery</p>
         <h2 class="mt-2 font-serif text-3xl font-semibold tracking-tight text-ink sm:text-4xl">From the gallery</h2>
       </div>
-      <a href="/gallery/" class="shrink-0 text-sm font-semibold text-ink underline-offset-4 hover:underline">See all photos &rarr;</a>
+      <a href="/gallery/" class="shrink-0 text-sm font-semibold text-ink underline-offset-4 hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink rounded-sm">See all photos &rarr;</a>
     </div>
     <Gallery images={homeGallery} columns={3} eager={0} />
   </section>
